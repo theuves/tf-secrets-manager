@@ -4,7 +4,7 @@ output "taskdef-secret" {
     valueFrom = "${data.aws_secretsmanager_secret.main.id}:${key}::"
   }]
   description = "AWS ECS Task Definition secret (valueFrom)."
-  sensitive   = var.sensitive
+  sensitive   = false
 }
 
 output "taskdef-environment" {
@@ -13,23 +13,23 @@ output "taskdef-environment" {
     value = local.secrets[key]
   }]
   description = "AWS ECS Task Definition environment (value)."
-  sensitive   = var.sensitive
+  sensitive   = true
 }
 
 output "dotenv" {
   value       = join("\n", [for key in keys(local.secrets) : "${key}='${local.secrets[key]}'"])
   description = "Dotenv format (key-value pairs)."
-  sensitive   = var.sensitive
+  sensitive   = true
 }
 
 output "linux" {
   value       = join("\n", [for key in keys(local.secrets) : "export ${key}='${local.secrets[key]}'"])
   description = "Linux format."
-  sensitive   = var.sensitive
+  sensitive   = true
 }
 
 output "cmd" {
   value       = join("\n", [for key in keys(local.secrets) : "set ${key}='${local.secrets[key]}'"])
   description = "Windows Command Prompt (cmd.exe)."
-  sensitive   = var.sensitive
+  sensitive   = true
 }
