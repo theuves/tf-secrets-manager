@@ -14,6 +14,8 @@ module "secrets_prod" {
   source      = "github.com/theuves/tf-secrets-manager.git?ref=master"
   secret_name = "my/secrets/prod"
 }
+
+# Retrieve the secrets with `module.secrets_prod.<output_name>`.
 ```
 
 **NOTE:** We recomend replace the `ref=master` argument by a specific version, example: `?ref=v1.0.0` ([see all releases here](https://github.com/theuves/tf-secrets-manager/releases)).
