@@ -1,4 +1,4 @@
-output "taskdef-secret" {
+output "taskdef_secret" {
   value = [for key in keys(local.secrets) : {
     name      = key
     valueFrom = "${data.aws_secretsmanager_secret.main.id}:${key}::"
@@ -7,7 +7,7 @@ output "taskdef-secret" {
   sensitive   = false
 }
 
-output "taskdef-environment" {
+output "taskdef_environment" {
   value = [for key in keys(local.secrets) : {
     name  = key
     value = local.secrets[key]
