@@ -27,9 +27,3 @@ output "linux" {
   description = "Linux format."
   sensitive   = true
 }
-
-output "cmd" {
-  value       = join("\n", [for key in keys(local.secrets) : "set ${key}='${local.secrets[key]}'"])
-  description = "Windows Command Prompt (cmd.exe)."
-  sensitive   = true
-}
